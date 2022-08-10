@@ -1,0 +1,70 @@
+<?php
+
+function agdinnova_menu() {
+
+  $items = array();
+  $items['agd-innova'] = array(
+    'title' => 'Consulta de facturas',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('agdinnova_form'),
+    'access arguments' => array('access content'),
+    'type' => MENU_NORMAL_ITEM,
+    'modal' => TRUE,
+  );
+
+    return $items;
+}
+
+function agdinnova_form($form, &$form_state) {
+
+  $form = array();
+  
+  $form['parametros']['cuit'] = array(
+    '#type' => 'textfield',
+    '#title' => 'CUIT',
+    '#default_value' => 0,
+    '#size' => 20,
+    '#maxlength' => 11,
+    '#required' => TRUE,
+    '#element_validate' => array('element_validate_number')
+  );
+
+   $form['parametros']['tipo'] = array(
+    '#type' => 'select',
+    '#title' => t('Tipo de Comprobante'),
+    '#options' => array(
+       0 => t('Factura A'),
+       1 => t('Factura B'),
+       2 => t('Factura C'),
+       3 => t('Factura D'),
+       4 => t('Factura E'),
+       5 => t('Factura F'),
+       6 => t('Factura G'),
+    ),
+);
+
+  $form['parametros']['numero'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Número de Factura',
+    '#default_value' => isset($values['numero']) ? $values['numero'] : NULL,
+    '#required' => TRUE
+  );
+
+$form['parametros']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Consultar'),
+  );
+  return $form;
+}
+
+function agdinnova_form_submit($form_id, &$form_state) {
+
+
+/*$cuit = $form_state['parametros']['cuit'];
+$tipo = $form_state['parametros']['tipo'];
+$numero = $form_state['parametros']['numero'];
+
+$mensaje = "CUIT ".$cuit." tipo ".$tipo." y numero ".$numero;
+drupal_set_message($mensaje);
+echo($mensaje);*/
+}
