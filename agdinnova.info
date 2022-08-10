@@ -1,0 +1,5 @@
+name = Trazabilidad de Facturas
+description = Formulario de trazabilidad de facturas de proveedores
+package = custom
+core = 7.x
+version = "1.0"
